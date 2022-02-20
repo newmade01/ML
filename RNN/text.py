@@ -55,4 +55,8 @@ def backprop(self, x, err):
 
 
 #모델 훈련
-rn = RecurrentNetwork()
+rn = RecurrentNetwork(n_cells=32, batch_size=32, learning_rate=0.01) #n_cell: unit, 뉴런, 순환층
+
+rn.fit(x_train_onehot, y_train, epochs=20, x_val=x_val_onehot, y_val=y_val)
+
+
