@@ -17,3 +17,4 @@ End to End object Detection , ECCV 2020 발표 (facebook research Team)
 ### 이분매칭
 - 중복X 
 - 순서가 상관 X(위치 상관 없음)
+- 직접적으로 문제를 해결
