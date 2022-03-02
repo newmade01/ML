@@ -15,4 +15,5 @@ End to End object Detection , ECCV 2020 발표 (facebook research Team)
 3. 결과: 클래스 & Bounding Box의 위치를 찾아줌 (없을때, no object )
 
 ### 이분매칭
-중복X , 순서가 상관 X(위치 상관 없음)
+- 중복X 
+- 순서가 상관 X(위치 상관 없음)
