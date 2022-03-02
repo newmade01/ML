@@ -25,4 +25,9 @@ End to End object Detection , ECCV 2020 발표 (facebook research Team)
 
 ### Transformer
 
+- Attention: 문맥 정보를 이해
+- 픽셀들이 Attention 상호작용을 이
+- 거리가 먼 픽셀간의 파악이 쉬
+- Encoder: feature이 담긴 각 픽셀의 위치 데이터 입력
+- Decoder: N개의 (=output값)object query 초기입력, 고유한 class&bounding box로 구분됨
 - 
