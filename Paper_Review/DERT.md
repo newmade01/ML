@@ -15,6 +15,14 @@ End to End object Detection , ECCV 2020 발표 (facebook research Team)
 3. 결과: 클래스 & Bounding Box의 위치를 찾아줌 (없을때, no object )
 
 ### 이분매칭
+- set Prediction Problem 해결 
 - 중복X 
 - 순서가 상관 X(위치 상관 없음)
 - 직접적으로 문제를 해결
+- 몇개의 instance의 box가 나오는지 output에 미리 고정을 시켜놓음
+- 하나씩 일대일 매칭(instance가 중복되지 않도록 )
+- 전체 loss값이 줄어들도록 매칭 
+
+### Transformer
+
+- 
