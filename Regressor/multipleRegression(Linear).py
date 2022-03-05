@@ -40,4 +40,15 @@ print(train_poly.shape) #degree의 갯수가 늘어나, 특성의 갯수가 매�
 lr.fit(train_poly, train_target)
 lr.score(train_poly,train_target)
 lr.score(test_poly, test_target)
-#결과: 특성의 갯수 > 샘플 수  => 복잡한 알고리즘 => train.score가 완벽에 가까워짐 => 매우 큰 과대적합 => 규제가 필요
+#결과: 특성의 갯수 > 샘플 수  => 복잡한 알고리즘 => train.score가 완벽에 가까워짐 => 매우 큰 과대적합 => 규제가 필요(부드러운 일반화된 모델, 가중치(기울기)를 작제 만듬)
+
+#규제점 기울기를 줄이기 위한 표준화 = 특성의 scale을 조졍
+from sklearn.preprocessiong import StandardScaler #평균&표준편차 사용하여 반드시 test도 변환이 필요!!
+
+ss = StandardScaler()
+ss.fit(train_poly) #평균&표준편차 구하는 역
+
+train_scaled = ss.transform(train_poly)
+test_scaled = ss.transform(test_poly)
+
+#규제: 릿지회귀
