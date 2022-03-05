@@ -43,3 +43,4 @@ plt.show()
 lr.score(train_poly, train_target)
 lr.score(test_poly, test_target)
 
+#과대적합: 복잡한 모델일수록 올라갈 가능성이 높음
