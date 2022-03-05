@@ -23,4 +23,7 @@ knr.score(test_input, test_target) #testSet 점수 확인 (분류-정확도, 회
 from sklearn.metric import mean_absolute_error
 
 test_predict = knr.predict(test_input)#예측값
-mean = mean_absolute_error(test_target, test_predict) #평균값
+mea  = mean_absolute_error(test_target, test_predict) #타깃값과 예측의 차이
+
+#score(train) < score(test) 과소적합
+#score(train) > score(test) 과대적합
