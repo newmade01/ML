@@ -51,4 +51,16 @@ ss.fit(train_poly) #평균&표준편차 구하는 역
 train_scaled = ss.transform(train_poly)
 test_scaled = ss.transform(test_poly)
 
-#규제: 릿지회귀
+#규제1: 릿지회귀 =L2규제 = (가중치)**2
+from sklearn.linear_model import Ridge #alpha 매개변수 (default: alpha=1) 보통 10의 배수 사용 , 적절한 규제 강도는 test.score와 train.score의 가까운 지점
+ridge = Ridge()
+ridge.fit(train_scaled, train_target)
+ridge.score(test_scaled, test_target)
+
+#규제2: 라쏘회구 = L1규제 =  가중치의 절댓값 (특성을 사용하지않는 경우도 발생)
+from sklearn.linear_model import Lasso#alpha 매개변수 (default: alpha=1)
+lasso = Lasso()
+lasso.fit(train_scaled, train_target)
+lasso.score(test_scaled, test_target)
+
+###############일반적으로 L2규제 릿지회귀 사용
