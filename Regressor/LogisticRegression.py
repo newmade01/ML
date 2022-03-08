@@ -38,7 +38,8 @@ from scipy.special import expit
 print(expit(decision))
 
 #로지스틱회귀: 다중분류(여러개의 클래스가 있는 경우),
-lr = LogisticRegression(C=20, max_iter=1000)   #C: L2노름 규제를 기본적으로 적용 매개변수 C사용(기본값 1)(올라가면 규제 약=>LinearRegression과 반대) ,max_iter: 반복횟수(기본값 100)
+#OVR: 이진분류를 여러번 수행해서 다중분류를 함
+lr = LogisticRegression(C=20, max_iter=1000)   #!!!!!!!!!!!!!!!!!!!1C: L2노름 규제를 기본적으로 적용 매개변수 C사용(기본값 1)(올라가면 규제 약=>LinearRegression과 반대) ,max_iter: 반복횟수(기본값 100)
 lr.fit(train_scaled, train_target)
 print(lr.score(train_scaled, train_target))
 print(lr.score(test_scaled, test_target))
@@ -46,3 +47,9 @@ proba = lr.predict_proba(test_scaled[:5])
 print(np.round(proba, decimals=3))  #확률출력
 print(lr.coef_.shape, lr.intercept_.shape)  #lr.coef_.shape: (클래스 갯수 ,특성과 곱해지는 계수)
 #!!!!!!!!!! softMax함수 계산    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#softMax = e의 z승 값/sum(e의 z승값) =  총 더한 값을 1로 만들어줌
+decision = lr.decision_function(test_scaled[:5])    #Z값 출력, 5개의 샘플
+print(np.round(decision, decimals=2))
+import scipy.special import softmax
+proba = softmax(decision, axios=1)
+print(np.round(proba, decimals=3))
