@@ -20,25 +20,29 @@ np.round(proba,decimals=4) #deciamal: 반올림할 위치
 #sigmoid 함수: 0~1까지 변경 OR Logistic 함수(tanh 도 종종 사용됨) 0.5가 기준이됨(0.5=음성클래스)
 #skearn.predict(): Z값으로 판단, predict_proba(): 파이값으로 판단
 
-#로지스틱회귀 이진분류
+#로지스틱회귀: 이진분류
 bream_smelt_index = (train_target == 'beam') | (train_target == 'smelt')    #boolean index
 train_bream_smelt = train_scaled[bream_smelt_index]
 target_bream_smelt = train_target[bream_smelt_index]
-
 from sklearn.linear_model import LogisticRegression
 lr = LogisticRegression()
 lr.fit(train_bream_smelt, target_bream_smelt)   #이름은 알파벳 순서대로 할당
-
 lr.predict(train_bream_smelt[:5])   #분류된 이름
 lr.predict_proba(train_bream_smelt[:5]) #확률
-
 print(lr.coef_, lr.intercept_) #.coef_: 곱해야하는 값, 가중치, 5개의 특성 # intercept_: 절편값
-
 #계산한 z의 값을 출력
 decision = lr.decision_function(train_bream_smelt[:5])
 print(decision)
-
-#sigmoid 함수 계산
+#!!!!! sigmoid 함수 계산 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 from scipy.special import expit
 print(expit(decision))
 
+#로지스틱회귀: 다중분류(여러개의 클래스가 있는 경우),
+lr = LogisticRegression(C=20, max_iter=1000)   #C: L2노름 규제를 기본적으로 적용 매개변수 C사용(기본값 1)(올라가면 규제 약=>LinearRegression과 반대) ,max_iter: 반복횟수(기본값 100)
+lr.fit(train_scaled, train_target)
+print(lr.score(train_scaled, train_target))
+print(lr.score(test_scaled, test_target))
+proba = lr.predict_proba(test_scaled[:5])
+print(np.round(proba, decimals=3))  #확률출력
+print(lr.coef_.shape, lr.intercept_.shape)  #lr.coef_.shape: (클래스 갯수 ,특성과 곱해지는 계수)
+#!!!!!!!!!! softMax함수 계산    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
