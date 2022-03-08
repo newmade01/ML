@@ -55,7 +55,7 @@ proba = softmax(decision, axios=1)
 print(np.round(proba, decimals=3))
 
 
-#결론,
+#결론, 분류모델
 #1. decision_function: 선형함수의 양성, 음성을 찾아냄(=>predicat)
 #2. predict_proba: 확률의 값들을 찾아냄
 #3. Sigmod 또는 sotfmax사용
