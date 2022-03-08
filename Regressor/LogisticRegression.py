@@ -59,3 +59,4 @@ print(np.round(proba, decimals=3))
 #1. decision_function: 선형함수의 양성, 음성을 찾아냄(=>predicat)
 #2. predict_proba: 확률의 값들을 찾아냄
 #3. Sigmod 또는 sotfmax사용
+#sklearn은 문자열을 그대로 읽음(_target값)
