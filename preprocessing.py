@@ -1,4 +1,5 @@
 #데이터전처리
+import numpy as np
 import pandas as pd
 fish = pd.read_csv('http://bit.ly/fish_csv_data')
 fish_input = fish[['Weight', 'Length', 'Diagonal', 'Height', 'Width']].to_numpy()
@@ -30,4 +31,21 @@ sc.partial_fit(train_scaled, train_target)#partial_fit: 기존에 W, B를 유지
 print(sc.score(train_scaled, train_target))
 print(sc.score(test_scaled, test_target))
 
-#epoch가 늘어남 => 과대적합 =>테스트 값이 작아짐
+#epoch가 늘어남 => 과대적합 =>테스트 값이 작아짐 => 조기종료 필요
+
+#조기종료
+sc =SGDClassifier(loss='log', random_state=42)
+train_score=[]
+test_score=[]
+
+classes =np.unique(train_target) #partial_fit에서는 클래스의 갯수를 따로 저장필요
+for _ in range(0, 300):
+    sc.partial_fit(train_scaled. train_target, classes=classes)
+    train_score.append(sc.score(train_scaled, train_target))
+    test_score.append(sc.score(test_scaled, test_target))
+sc = SGDClassifier(loss = 'log', max_iter=100, tol=None, random_state=42) #max_iter=100 , 에포크 최적점
+sc.fit(train_scaled, train_target)
+
+print(sc.score(train_scaled, train_target))
+print(sc.score(test_scaled, test_target))
+
