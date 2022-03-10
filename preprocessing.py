@@ -23,5 +23,11 @@ print (test_scaled)
 from sklearn.linear_model import SGDClassifier
 sc = SGDClassifier(loss='log', max_iter=10, random_state=42) #logistic 함수, max_iter=epoch와 동일, random_state: 균일하게
 sc.fit(train_scaled, train_target)
+print(sc.score(train_scaled, train_target)) #확률적 경사하강법: 하나씩 샘플을 넣어서 계산
+print(sc.score(test_scaled, test_target))
+
+sc.partial_fit(train_scaled, train_target)#partial_fit: 기존에 W, B를 유지해서 한번 더 학습
 print(sc.score(train_scaled, train_target))
 print(sc.score(test_scaled, test_target))
+
+#epoch가 늘어남 => 과대적합 =>테스트 값이 작아짐
