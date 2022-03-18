@@ -18,7 +18,7 @@ print(np.unique(train_target, return_counts=True))
 train_scaled = train_input / 255.0
 train_scaled = train_scaled.reshape(-1, 28*28) #3차원 ->1차원 (샘플수, 높이*너비)
 
-#Keras 모델
+#Keras 모델: 층을 만듬
 train_scaled, val_scaled, train_target, val_target = train_test_split(train_scaled, train_target, test_size=0.2, random_state=42)
 print(train_scaled.shape, train_target.shape)
 print(val_scaled.shape, val_target.shape)
