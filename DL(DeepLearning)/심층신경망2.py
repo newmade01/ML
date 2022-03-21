@@ -39,9 +39,22 @@ print(np.mean(val_labels == val_target))    #True의 값들 평균이 나옴
 ###콜백 : 진행도중 지정한 작업을 시행
 checkpoint_cb = keras.callbacks.ModelCheckpoitnt('best-model.h5')    #가장 낮은 손실값을 저장
 model.fit(train_scaled, train_target, epochs=20, verbose=0, validation_data=(val_scaled, val_target), callbacks=[checkpoint_cb])
-
 model=  keras.models.load_model('best-model.h5')    #사용시 불러옴
 
 ###조기종료: 검증세트의 손실이 증가시
 checkpoint_cb = keras.callbacks.ModelCheckpoitnt('best-models.h5')
-early_stopping_cb = keras.callbacks
+early_stopping_cb = keras.callbacks.EarlyStopping(patient=2, restore_best_weights=True) #patient: 증가하는 것을 몇번까지 기다리는지, restore_best_weight: 가장 손실이 낮았던 w으로 되돌려
+
+history = model.fit(train_scaled, train_target, epochs=20, verbose=0, validation_data=(val_scaeld, val_target), callbacks=[checkpoint_cb, early_stopping_cb])
+print(early_stopping_cb.stopped_epoch)  #best_weight
+
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.xlabel('epoch')
+plt.ylabel('loss')
+plt.legend(['train', 'val'])
+plt.show()
+
+###결론
+#규제: Dropout
+#학습 => 검증(하이퍼파라미터 변경) => 테스트
