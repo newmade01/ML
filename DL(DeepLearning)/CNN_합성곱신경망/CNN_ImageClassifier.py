@@ -8,6 +8,8 @@ train_scaeld = train_input.reshape(-1, 28, 28, 1)/255.0 #(샘플수, 픽셀, 픽
 
 train_scaeld, val_scaled, train_target, val_target = train_test_split(train_scaeld, train_target, test_size=0.2, random_state=42)
 
+###첫번째 합성곱층
 model = keras.Sequential()
-
-model.add()
+model.add(keras.layers.Conv2D(32, kernel_size=3, activation='relu', padding='same', input_shape=(28, 28, 1)))   #배치차원은 써주지 않음
+model.add(keras.layers.MaxPooling2D(2)) #최대풀링(2*2) 정방향으로 풀링, 반으로 축소
+###두번째 합성곱층+완전 연결층(Dense)
