@@ -1,7 +1,7 @@
 from tensorflow import keras
 from sklearn.model_selection import train_test_split
 
-#로드
+###로드
 (train_input, train_target), (test_input, test_target) = keras.datasets.fashion_mnist.load_data()
 train_scaeld = train_input.reshape(-1, 28, 28, 1)/255.0 #(샘플수, 픽셀, 픽셀, 차원) #이미지, 2D 이미지 그대도 사용, 3차원으로 사용 #-1값: 처음 갯수 그대로 사용
 train_scaeld, val_scaled, train_target, val_target = train_test_split(train_scaeld, train_target, test_size=0.2, random_state=42)
@@ -24,16 +24,20 @@ model.summary()
 ###plot_model()
 keras.utils.plot_model(model, show_shpes=True)  #각 층의 연결 구성 흐름
 
-###complie & train
+###complie & train학습
 model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics='accuracy')
 checkpoint_cb = keras.callbacks.ModelCheckpoint('best-cnn-model.h5')    #모델 가중치 저장
 early_stopping_cb =keras.callbacks.EarlyStopping(patience=2, restore_best_weights=True) #떨어지는 지점에서 2번 건너뛰고 , 최적의 순간으로 돌아감
 history = model.fit(train_scaled, train_target, epochs=20, validation_data=(val_scaled, val_target), callbacks=[checkpoint_cb, early_stopping_cb])
 
-###평가 & 예측
+###평가(validation) & 예측(predict)
 model.evaluate(val_scaled, val_target)
 
 plt.imshow(val_scaled[0].reshape(28, 28), cmap='gray_r')
 plt.show()
 
-predi = model.predict(val_scaled[0:1])
+predi = model.predict(val_scaled[0:1])  #첫번째 이미지의 예측한 10개의 확율
+
+###테스트 세트 점수(testSet)
+test_scaled = test_input.reshape(-1, 28, 28, 1) /255.0
+model.evaluate(test_scaled, test_target)
