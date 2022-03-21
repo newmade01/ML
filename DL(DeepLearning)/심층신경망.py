@@ -47,7 +47,7 @@ sgd = keras.optimizers.SGD(learning_rate=0.1)
 sgd = keras.optimizers.SGD(momentum=0.9, nesterov=True) #모멘텀 , 네스테로프모멘텀
 model = keras.Sequential()
 model.compile(optimizer='adam')    #Adam 지정
-model.fit(train_scaled, train_target, epochs=5)
+model.fit(train_scaled, train_target, epochs=5)     #fit() 이후에도 추가로 모델을 만들수 있음
 model.evaluate(val_scaled, val_target)
 
 
