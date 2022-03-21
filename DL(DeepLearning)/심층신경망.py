@@ -51,6 +51,7 @@ model.fit(train_scaled, train_target, epochs=5)
 model.evaluate(val_scaled, val_target)
 
 
-###앙상블 랜덤포레스트 vs. 심층 신경망
+###앙상블 랜덤포레스트 vs. 심층 신경망 (표현학습: 특징을 잘 찾음)
 #각각 개별 계산 후 합침, 순차적 훈련 vs. 한꺼번에 동시에 계산
 #다른 층 쌓을 수 X vs. 여러 층을 쌓아서 단계별로 학습 가능
+#DB, 엑셀, 정형화된  vs. 이미지, 텍스트, 비정형화된
