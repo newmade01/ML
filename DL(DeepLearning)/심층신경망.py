@@ -35,7 +35,7 @@ model.fit(train_scaled, train_target, epochs=5)
 ###relu 함수(=max) & Flatten층
 model = keras.Sequential()
 model.add(keras.layers.Flatten(input_shape=(28, 28))    #Flatten층: 라이브러리 구성상 편하게 만들어줌, 1차원배열 =>2차원배열 펼쳐줌
-model.add(keras.layers.Dense(100, activation='relu'))
+model.add(keras.layers.Dense(100, activation='relu'))   #Dense층: 완전연결층, 밀집층
 model.add(keras.layers.Dense(10, activation='softmax'))
 model.summary() #flatten은 학습되는 params가 없음
 
@@ -55,3 +55,8 @@ model.evaluate(val_scaled, val_target)
 #각각 개별 계산 후 합침, 순차적 훈련 vs. 한꺼번에 동시에 계산
 #다른 층 쌓을 수 X vs. 여러 층을 쌓아서 단계별로 학습 가능
 #DB, 엑셀, 정형화된  vs. 이미지, 텍스트, 비정형화된
+
+###신경망모델 결론:
+#이진분류 sigmiod, 다중분류 softmax
+#출력층 = 클래스의 갯수
+#은닉층: 적절한 크기를 임의로 선정 , 활성화 함수 필수!!, 각 유닛에서 선형계산 수행(w, b), relu 함수 많이 사용,
