@@ -14,10 +14,17 @@ model.add(keras.layers.LSTM(8)) #8개의 뉴런개수, 순환되는 은닉쉘,
 model.add(keras.layers.Dense(1, activation='sigmoid'))
 model.summary()
 
-### 드롭아웃: 과대적합 규제
+### 드롭아웃: 과대적합 규제, 훈련세트와 갭이 줄어듬, 성능 향상
 model2 = keras.Sequential()
 model2.add(keras.layers.Embedding(500, 16, input_length=100))
-model2.add(keras.layers.LSTM(8, dropout=0.3))   #순환신경망 드롭아웃
+model2.add(keras.layers.LSTM(8, dropout=0.3))   #순환신경망 드롭아웃,
 model2.add(keras.layers.Dense(1, activation='sigmoid'))
 
-
+### 2개의 층 연결 (여러개 층 추가)
+#모든 타입스텝 은닉상태 출력 #기본적으로 keras는 마지막 타임스텝의 은닉 상태만 저장됨
+model3 = keras.Sequential()
+model3.add(keras.layers.Embedding(500, 16, input_length=100))
+model3.add(keras.layers.LSTM(8, dropout=0.3, return_sequences=True))    #return_sequences=True: 모든 타임스텝의 은닉 상태 저장
+model3.add(keras.layers.LSTM(8, dropout=0.3))
+model3.add(keras.layers.Dense(1, activation='sigmoid'))
+model3.summary()
