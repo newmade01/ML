@@ -24,7 +24,17 @@ model2.add(keras.layers.Dense(1, activation='sigmoid'))
 #모든 타입스텝 은닉상태 출력 #기본적으로 keras는 마지막 타임스텝의 은닉 상태만 저장됨
 model3 = keras.Sequential()
 model3.add(keras.layers.Embedding(500, 16, input_length=100))
-model3.add(keras.layers.LSTM(8, dropout=0.3, return_sequences=True))    #return_sequences=True: 모든 타임스텝의 은닉 상태 저장
-model3.add(keras.layers.LSTM(8, dropout=0.3))
+model3.add(keras.layers.LSTM(8, dropout=0.3, return_sequences=True))    #return_sequences=True: 마지막층을 제외한 모든 타임스텝의 은닉 상태 저장
+model3.add(keras.layers.LSTM(8, dropout=0.3))   #마지막 순환층
 model3.add(keras.layers.Dense(1, activation='sigmoid'))
 model3.summary()
+
+
+### GRU 셀: LSTM의 간소화 버전, 셀 상태 X, 은닉상태와 입력만 가짐
+# 이전 은닉 상태가 셀을 제어
+model4 = keras.Sequential()
+model4.add(keras.layers.Embedding(500, 16, input_length=100))
+model4.add(keras.layers.GRU(8))
+model4.add(keras.layers.Dense(1, activation='sigmoid'))
+model4.summary()
+
