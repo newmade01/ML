@@ -64,4 +64,13 @@
 1. 앵커박스 grid
 2. bonding box + confidence: 확률적으로 높은 박스 
 3. Class probablity map: 클래스의 객체를 분류
-4.  2+3을 합쳐, bounding box를 찾고 객체 클래스를 찾음
+4. 2+3을 합쳐, bounding box를 찾고 객체 클래스를 찾음
+
+
+### 코드 실행 순서
+1. 데이터셋 다운로드 
+2. 모델 구성 
+3. 학습 
+4. 검증 
+5. 추론 
+6. 모델 내보내기(weight)
