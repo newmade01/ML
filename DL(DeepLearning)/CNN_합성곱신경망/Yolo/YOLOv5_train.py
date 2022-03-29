@@ -17,3 +17,20 @@ with open('content/yolov5/pothole/test.txt', 'w') as f:
 with open('content/yolov5/pothole/valid.txt', 'w') as f:
     f.write('\n'.join(valid_img_list) + '\n')
 
+
+
+from IPython.core.magic import register_line_cell_magic
+@register_line_cell_magic
+def writetemplate(line, cell):
+    with open(line, 'w') as f:
+        f.write(cell.format(**globals()))
+'''
+%%writetemplate /content/yolov5/pothole/data.yaml
+
+train: ./pothole/train/images
+test: ./pothole/test/images
+valid: ./pothole/valid/images
+
+nc: 1
+names: ['pothole']
+'''
