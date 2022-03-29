@@ -18,7 +18,7 @@ with open('content/yolov5/pothole/valid.txt', 'w') as f:
     f.write('\n'.join(valid_img_list) + '\n')
 
 
-
+#이미지의 train, test, valid 리스트를 .yaml파일에 저장
 from IPython.core.magic import register_line_cell_magic
 @register_line_cell_magic
 def writetemplate(line, cell):
@@ -34,3 +34,5 @@ valid: ./pothole/valid/images
 nc: 1
 names: ['pothole']
 '''
+
+#모델 구성
