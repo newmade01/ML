@@ -14,8 +14,8 @@ def detector():
     .print('{}, {}, {}'.format(class_names[int(classes[0][i])],
                                np.array(scores[0][i]),
                                np.array(boxes[0][i])))
-  #BGR: 그림그리기, draw_output: 표시
-  img = cv2.cvtColor(img_raw.numpy(), cv2.COLOR_RGB2BGR)
-  img = draw_output(img, (boxes, scores, classes, num), class_names)
+
+  img = cv2.cvtColor(img_raw.numpy(), cv2.COLOR_RGB2BGR)   #BGR: 그림그리기
+  img = draw_output(img, (boxes, scores, classes, num), class_names)  # draw_output: 표시
 
   return img
