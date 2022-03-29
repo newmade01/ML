@@ -46,4 +46,3 @@ with open('/content/yolov5/pothole/data.yaml', 'r') as stream:
 #%%writetemplate /content/yolov5/models/custom_yolov5s.yaml #새로운 custom 버전을 변경
 
 ###학습
-
