@@ -79,7 +79,7 @@ Imaage(filename='/content/yolov5/runs/train/pothole_results/val_batch0_labels.pn
 ###검증
 # !python val.py --weights run/train/pothole_results/weights/best.pt --data ./pothole/data/data.yaml --img 640 --iou 0.65 --half #이미지크기:640
 
-###테스트 test
+#테스트 test
 # !python val.py --weights run/train/pothole_results/weights/best.pt --data ./pothole/data/data.yaml --img 640 --task test
 
 ###추론
