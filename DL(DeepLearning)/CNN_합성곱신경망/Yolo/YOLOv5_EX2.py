@@ -65,7 +65,7 @@ nc: {num_calsses}
 !python train.py --img 640 --batch 32 --epochs 100 --data ./smoke/data.yaml --cfg ./models/custom_yolov5s.yaml --weights '' --name smoke_results --cache
 '''
 
-#텐서보드
+# 텐서보드
 '''
 %load_ext tensorboard
 %tensorboard --logdir runs
@@ -75,8 +75,23 @@ Image(filename='runs/train/smoke_results/results.png', width=100)
 Image(filename='runs/train/smoke_results/train_batch0.jpg', width=100)  #위치만 detection
 Image(filename='runs/train/smoke_results/val_batch0_label.png', width=100)  #레이블 이름까지 추가
 
-###검증
+### 검증
 #!python val.py --weights runs/train/smoke_results/weights/best.pt --data ./smoke/data.yaml --img 640 --iou 0.65 --half
 
 #테스트
 #!python val.py --weights runs/train/smoke_results/weights/best.pt --data ./smoke/data.yaml --img 640 --task test
+
+### 추론: test이미지
+#!python detect.py --weights runs/train/smoke_results/weights/best.pt --img 640 --conf 0.4 --source ./smoke/test/images
+
+#랜덤으로 결과 출력
+import glob
+
+image_name = random.choice(globe.glob('run/detect/exp3/*.jpg'))
+display(Image(filename=image_name))
+
+###weight 내보내기
+'''
+%mkdir /content/drive/My Drive/smoke/
+%cp runs/train/smoke_results/weights/best.pt /content/drive/My Drive/smoke/
+'''
