@@ -86,4 +86,20 @@ Imaage(filename='/content/yolov5/runs/train/pothole_results/val_batch0_labels.pn
 # %ls runs/train/pothole_results/weights  #best.pt, last.pt
 # !python detect.py --weights runs/train/pothole_results/weights/best.pt --img 640 --conf 0.4 --source ./pothole/test/images    #best.pt 로 추론, --source: 테스트 이미지에 대한 추론
 
+import glob
+import random
+from IPython.display import Image, display
+
+image_name = random.choice(glob.glob('content/yolov5/runs/detect/exp2/*.jpg'))
+display(Image(filename=image_name)) #랜덤 이미지 표출
+
+###모델 내보내기
+#best.pt파일 내보내기
+from google.colab import drive
+drive.mount('content/drive')
+'''
+%mkdir /content/drive/My Drive/pothole
+%cp /content/..../best.pt /content/drive/My Drive/pothole  #복사
+
+'''
 
