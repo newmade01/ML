@@ -5,5 +5,7 @@
     - YOLO
     - EfficientNet
   - RNN
+    - L
 - 지도학습
-- 비
+- 비지도학습
+- 
