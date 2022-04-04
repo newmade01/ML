@@ -4,6 +4,6 @@
   - CNN
     - YOLO
     - EfficientNet
-  - LSTM
+  - RNN
 - 지도학습
-- 
+- 비
