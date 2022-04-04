@@ -26,14 +26,21 @@
 - Efficient V1의 문제점
   1. 해상도가 높은 이미지로 학습하면 속도가 느림
       - 동일한 GPU 메모리에, 이미지가 커질경우 mini-batch size 감소 학습속도 느려짐
-  2. Depthwise Seperable Convolution이 초기 layer에서 느림, 계산 방식이 아직 최적화 되지않았음(***Depth-wise Convolution은 한 번 통과하면, 하나로 병합되지 않고, (R, G, B)가 각각 Feature Map이 된다)
+  2. Depthwise Seperable Convolution(일반 conv 대비 8-9배 연산량이 줄어듬, 모바일or엣지 디바이스)이 초기 layer에서 느림, 계산 방식이 아직 최적화 되지않았음(***Depth-wise Convolution은 한 번 통과하면, 하나로 병합되지 않고, (R, G, B)가 각각 Feature Map이 된다)
+     - 이론적으로는 Depthwise가 빠른데, Depthwise Conv가 초기 레이어에 있을수록 실제 runtime은 더 느림(modern hardware가 효율적으로 구현하지 못함)
   3. 모든 stage를 동일하게 scaling하는 것은 sub-optimal
-      - 간단한 compound scaling rule을 이용해 모든 stage를 동일하게 scale upgkdu, 학습 속도 및 파라미터 효율을 최적화
-- Efficient V1의 해결방법
+     - 정확도 & Flop을 최적화
+     - 간단한 compound scaling rule을 이용해 모든 stage를 동일하게 scale up, 학습 속도 및 파라미터 효율을 최적화
+- Efficient V1의 해결방법 => V2에 적용 방법
   1. Progressive Learning을 활용해 image 와 regularization을 동적 변경
      - 학습중, 학습 설정을 동적으로 변경
-     - Regularization: RandAugment, mixup, dropout
+     - Regularization: RandAugment, mixup, dropout(ConvNet은 이미지 사이즈에 독립적)
        - 사이즈가 작은 이미지, 약한 regularization 필요
        - 사이즈가 큰 이미지, 강한 regularization 필요
-  2. 초기 layer을 MBConv 대신 Fused-MBconv로 교체
+  2. 초기 layer을 기존 MBConv 대신 (일반 conv를 사용한) Fused-MBconv로 교체 => 런타임 자체는 더 빨라짐
   3. non-uniform scaling 전략을 적용
+     - 정확도 & 학습효율 & 파라미터 효율을 Nas의 objective로 설정(=>EfficientNet V2-small) 
+- EfficientNet V1 vs. EfficientNet V2
+  - V1: 초기 레이어에 MBConv , V2: Fused-MBConv
+  - V1: 연산량이 많은 5*5 커널, V2:  전부 3*3 커널 (receptive field 줄어들어, 네트워크 후반부 여러개의 레이어를 추가)(***receptive field: 외부 자극이 전체 영향을 끼치는 것이 아니라 특정 영역에만 영향을 준다,  특정 범위를 한정해 처리를 하면 훨씬 효과적)
+  - 
