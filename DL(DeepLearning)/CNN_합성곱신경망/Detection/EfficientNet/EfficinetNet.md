@@ -1,4 +1,4 @@
-#EfficientNet(Smller Models and Faster Traning)
+# EfficientNet(Smller Models and Faster Traning)
 - 최소한의 컴퓨팅 자원, 최대한의 성능
 - 종합 선물 세트
 - 모델과 데이터가 커짐, 학습 효울의 중요도 커짐
@@ -7,7 +7,7 @@
 - 파라미터 갯수가 굉장히 적어짐
 - 빠른 시간안에 학습
 - 
-###EfficinetNet V1
+### EfficinetNet V1
 - 컴퓨팅 자원에따라 , B0 ~ B7 모델 제안
 - width(채널), depth(레이어), resolution(이미지 사이즈) 동시에 조절 => compound scaling method!!!! 순차적으로 scale UP
   1. Width: 채널수
@@ -22,7 +22,7 @@
   2. 탐섹된 알파, 베타, 감마를 고정한 상테로, 파이를 2로 증가시켜 B1획득
   3. ***파이만 증가시켜 B2, B3,...B7 획득
 
-###EfficientNet V2
+### EfficientNet V2
 - Efficient V1의 문제점
   1. 해상도가 높은 이미지로 학습하면 속도가 느림
       - 동일한 GPU 메모리에, 이미지가 커질경우 mini-batch size 감소 학습속도 느려짐
