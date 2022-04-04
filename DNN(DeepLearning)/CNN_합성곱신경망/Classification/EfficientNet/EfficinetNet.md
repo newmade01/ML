@@ -47,4 +47,21 @@
   - 지나치게 큰 이미지 사이즈는 메모리 & 학습 속도에 부하를 줄 수 있음 => Inference에서 최대 이미지 사이즈를 480으로 제한
   - V1: uniform한 스케일링 방식, V2: non-Uniform: Inference에서 최대 이미지 사이즈를 480으로 제한
   - V2: 저자가 layer을 추가하여 scail up, later stage에 점진적으로 추가
-  - 
+
+# EfficientNet V2
+### 결과
+- 정확도는 이전 알고리즘과 비슷, parameter & FLOP & Latency가 훨씬 적음
+- 정확도가 어느정도 높아지면, 모델 크기를 늘려서는 더이상 정확도를 올리기 힘들다. but, 데이터 사이즈!!!를 늘리면 정확도를 올릴수 있음
+- ImageNet21k로 사전 학습을 하면 충분히 효율적 (데이터 사이즈가 기본 ImageNet에 비해 10배 이상 큼)
+
+### 이외...
+- Progressive Learning을 다른 네트워크에 적용했을때도 성능이 좋아짐
+- adaptive regularization 더 나은 정확도
+
+### 결론
+- multi-objective NAS, Fused-MBConv로 V1의 성능 향상
+- Adaptive regularization, progressive learning 제안
+- 학습 효율 & 파라미터 효율 & 정확도 향상
+- 비용적으로 효율적
+- 아주 강력한 정규화(regularization)
+- 
