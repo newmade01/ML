@@ -40,7 +40,11 @@
   2. 초기 layer을 기존 MBConv 대신 (일반 conv를 사용한) Fused-MBconv로 교체 => 런타임 자체는 더 빨라짐
   3. non-uniform scaling 전략을 적용
      - 정확도 & 학습효율 & 파라미터 효율을 Nas의 objective로 설정(=>EfficientNet V2-small) 
-- EfficientNet V1 vs. EfficientNet V2
+
+### EfficientNet V1 vs. EfficientNet V2
   - V1: 초기 레이어에 MBConv , V2: Fused-MBConv
   - V1: 연산량이 많은 5*5 커널, V2:  전부 3*3 커널 (receptive field 줄어들어, 네트워크 후반부 여러개의 레이어를 추가)(***receptive field: 외부 자극이 전체 영향을 끼치는 것이 아니라 특정 영역에만 영향을 준다,  특정 범위를 한정해 처리를 하면 훨씬 효과적)
+  - 지나치게 큰 이미지 사이즈는 메모리 & 학습 속도에 부하를 줄 수 있음 => Inference에서 최대 이미지 사이즈를 480으로 제한
+  - V1: uniform한 스케일링 방식, V2: non-Uniform: Inference에서 최대 이미지 사이즈를 480으로 제한
+  - V2: 저자가 layer을 추가하여 scail up, later stage에 점진적으로 추가
   - 
