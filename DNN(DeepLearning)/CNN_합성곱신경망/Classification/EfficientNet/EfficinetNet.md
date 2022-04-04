@@ -57,6 +57,7 @@
 ### 이외...
 - Progressive Learning을 다른 네트워크에 적용했을때도 성능이 좋아짐
 - adaptive regularization 더 나은 정확도
+- FixEfficientNet에서 train 입력 이미지를 test 입력 이미지보다 작게 학습하여 성능을 향상
 
 ### 결론
 - multi-objective NAS, Fused-MBConv로 V1의 성능 향상
@@ -64,4 +65,14 @@
 - 학습 효율 & 파라미터 효율 & 정확도 향상
 - 비용적으로 효율적
 - 아주 강력한 정규화(regularization)
-- 
+
+### Progressive Learning이란...
+- Progressive Learning: training할 때, 이미지의 크기를 점진적으로 증가 => 학습 속도를 빠르게, but, 정확도가 감소
+- 이전 모델들은 이미지 크기에 따라 모두 동인한 정규화(dropout, augmentation)적용했지만, EfficientNetdms 이미지 크기에 따라 정규화 방법을 다르게 설정하여 정확도 감소를 해결
+  - 입력 이미지가 작을 때 => 약한 정규화
+  - 입력 이미지가 클 때 => 오버피팅 방지위해 강한 정규화
+- 적용방법: training 과저을 4 stage로 나눠 1 stage당 87epochs를 진행, stage를 지날수록 이미지 크기와 정규화 강도 높아짐
+
+### Depthwise convolution이란...
+- conv 연산량을 낮춰주어 제한된 연산량 내에 더 많은 filter를 사용
+- modern accelerator를 활용하지 못해, 학습 속도를 늘게함 => Fused-MDconv사용
