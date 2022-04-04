@@ -69,3 +69,5 @@ keras.layers.Maxpooling2D(2, strides=2, padding='valid')    #strides, padding �
 
 # 추가
 - 일반적으로 이 계수들은 특정 목적에 따라 고정이 되지만 CNN에서 사용하는 계수들은 학습을 통해 결정 된다
+- CNN의 경우 변수의 갯수가 고정, FCN(Fully Connected Layer 입력 영상의 크기 제한이 없어짐)
+- 
