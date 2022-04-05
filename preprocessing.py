@@ -1,3 +1,14 @@
+'''
+SGD 확률적 경사 하강법
+-데이터 전처리
+-train, val set 나누기
+-특성_scaled , SGD
+-최적화, SGDClassifier : 정확도 출력
+-과대적합 -> 조기종료
+
+'''
+
+
 #데이터전처리
 import numpy as np
 import pandas as pd
