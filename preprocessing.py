@@ -45,6 +45,7 @@ print(sc.score(test_scaled, test_target))
 
 #조기종료
 sc =SGDClassifier(loss='log', random_state=42)
+#스코어를 모두 저장해둠
 train_score=[]
 test_score=[]
 
@@ -53,6 +54,7 @@ for _ in range(0, 300):
     sc.partial_fit(train_scaled. train_target, classes=classes)
     train_score.append(sc.score(train_scaled, train_target))
     test_score.append(sc.score(test_scaled, test_target))
+    
 sc = SGDClassifier(loss = 'log', max_iter=100, tol=None, random_state=42) #max_iter=100 , 에포크 최적점
 sc.fit(train_scaled, train_target)
 
