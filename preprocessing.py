@@ -1,11 +1,10 @@
 '''
 SGD 확률적 경사 하강법
 -데이터 전처리
--train, val set 나누기
--특성_scaled , SGD
+-데이터셋 나누기
+-특성_scaled(데이터를 표준화) , SGD
 -최적화, SGDClassifier : 정확도 출력
 -과대적합 -> 조기종료
-
 '''
 
 
