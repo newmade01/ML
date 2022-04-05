@@ -14,7 +14,7 @@ lr.predict([[50]])
 #기울기: .coef_, 절편: intercept_
 print(lr.coef_, lr.intercept_)
 
-plt.scatter(train_input, train_target)
+plt.scatter(train_input, train_target)  #산점도 그리기
 
 #1차 방정식 그래프 그리기 (x값, y값) 15~ 50까지의 값
 plt.plot([15, 50],[15*lr.coef_+lr.intercept_, 50*lr.coef_+lr.intercept_])
