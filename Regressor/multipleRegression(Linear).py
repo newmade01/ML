@@ -3,7 +3,7 @@
 
 #데이터준비
 import pandas as pd
-from sklearn.preprocessing import PolynomialFeatures
+from sklearn.preprocessing import PolynomialFeatures #PolynomialFeatures함수를 통해 현재 데이터를 다항식 형태로 변경
 from sklearn.linear_model import LinearRegression
 
 df = pd.read_csv('https://bit.ly/perch_csv')
