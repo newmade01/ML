@@ -29,6 +29,6 @@ train_scaled = train_input / 255.0
 train_scaled = train_scaled.reshape(-1, 28*28) #3차원 ->1차원 (샘플수, 높이*너비)
 print(train_scaled.shape)   #(샘플수, 2차원*3차원값)
 sc = SGDClassifier(loss='log', max_iter=5, random_state=42) #max_iter =  epoch 반복횟수 #2진분류: 손실함수+sigmoid / 다중분류: 10개의 이진분류 사용+softmax
-scores = cross_validate(sc, train_scaled, train_target, n_jobs=-1) #기본값 5fold
+scores = cross_validate(sc, train_scaled, train_target, n_jobs=-1) #기본값 5fold # n_jobs 옵션 사용하면 CPU 코어갯수-> 병렬화 옵션 사용 X 
 print(np.mean(scores['test_score']))
 
