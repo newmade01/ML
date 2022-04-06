@@ -31,6 +31,8 @@ early_stopping_cb =keras.callbacks.EarlyStopping(patience=2, restore_best_weight
 history = model.fit(train_scaled, train_target, epochs=20, validation_data=(val_scaled, val_target), callbacks=[checkpoint_cb, early_stopping_cb])
 
 ###평가(validation) & 예측(predict)
+#predict()는 테스트 이미지의 분류 결과를 예측합니다. 반환값이 예측 확률입니다.
+#evaluate()는 테스트 이미지 데이터 세트를 입력해서 성능 평가를 합니다. 반환값이 정확도등의 Metric입니다.
 model.evaluate(val_scaled, val_target)
 
 plt.imshow(val_scaled[0].reshape(28, 28), cmap='gray_r')
