@@ -3,7 +3,8 @@ import keras
 import matplotlib.pyplot as plt
 
 model.compile(loss='sparse_categorical_crossentropy', metrics='accuracy')
-history = model.fit(train_scaled, train_target, epochs=5, verbose=0)    #epoch를 늘리면 모델이 더 복잡해짐 #history: 객체의
+history = model.fit(train_scaled, train_target, epochs=5, verbose=0)    #epoch를 늘리면 모델이 더 복잡해짐 #history: 객체의 
+#verbose: 0 = silent, 1 = progress bar, 2 = one line per epoch.
 print(history.history.keys())   #loss, accuracy 값이 들어있음
 
 plt.plot(history.history['loss'])
