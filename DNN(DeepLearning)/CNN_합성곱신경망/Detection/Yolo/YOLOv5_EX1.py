@@ -1,5 +1,5 @@
 ###데이터셋정리
-from glob import glob
+from glob import glob #리스트 형식으로 
 
 train_img_list = glob('content/yolov5/pothole/train/images/*.jpg')
 test_img_list = glob('content/yolov5/pothole/test/images/*.jpg')
