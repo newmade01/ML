@@ -4,7 +4,8 @@ import maplotlib.pyplot as plt
 conv =model.layer[0] #Conv2D
 print(conv.weights[0].shape, conv.weight[1].shape)
 conv_weights =conv.weights[0].numpy()
-plt.hist(con_weights.reshap(-1, 1))
+
+plt.hist(con_weights.reshap(-1, 1)) #hist: 히스토 그램 #reshape(-1, 1): -1은 값으로 추정, 1은 1열 (행,열)
 plt.xlabel('weight')
 plt.ylabel('count')
 plt.show()
