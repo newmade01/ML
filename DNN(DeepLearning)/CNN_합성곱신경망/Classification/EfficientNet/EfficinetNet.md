@@ -32,7 +32,7 @@
      - 정확도 & Flop을 최적화
      - 간단한 compound scaling rule을 이용해 모든 stage를 동일하게 scale up, 학습 속도 및 파라미터 효율을 최적화
 - Efficient V1의 해결방법 => V2에 적용 방법
-  1. Progressive Learning을 활용해 image 와 regularization을 동적 변경
+  1. Progressive Learning을 활용해 image 와 regularization(정규화)을 동적 변경
      - 학습중, 학습 설정을 동적으로 변경
      - Regularization: RandAugment, mixup, dropout(ConvNet은 이미지 사이즈에 독립적)
        - 사이즈가 작은 이미지, 약한 regularization 필요
