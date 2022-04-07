@@ -9,7 +9,7 @@
 ### LSTM 신경망
 from tensorflow import keras
 model = keras.Sequential()
-model.add(keras.layers.Embedding(500, 16, input_length=100))
+model.add(keras.layers.Embedding(500, 16, input_length=100)) #양의 정수 (인덱스)를 고정 크기의 밀도가 높은 벡터로 바꿉니다.
 model.add(keras.layers.LSTM(8)) #8개의 뉴런개수, 순환되는 은닉쉘,
 model.add(keras.layers.Dense(1, activation='sigmoid'))
 model.summary()
