@@ -22,7 +22,8 @@ plt.show()
 ###함수형API: 활성화층 시각화
 dense1 = keras.layers.Dense(100, activation='sigmoid')
 dense2 = keras.layers.Dense(10, activation='softmax')
-#입력층: input 값 그 자체
+
+#입력층: input 값 그 자체 -> 은닉층 -> 출력(모델)
 input = keras.Input(shape=...) #InputLayer클래스 객체
 hidden =  dense1(intput)
 output = dense2(hidden)
