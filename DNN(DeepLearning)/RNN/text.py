@@ -10,7 +10,7 @@ print(x_train_all.shape, y_train_all.shape)
 
 from tensorflow.keras.preprocessing import sequence
 maxlen=100 #최대 길이를 지정
-x_train_sequence = sequence.pad_sequences(x_train, maxlen=maxlen)
+x_train_sequence = sequence.pad_sequences(x_train, maxlen=maxlen) #pad_sequence: 길이가 같지 않고 적거나 많을 때 일정한 길이로 맞춰 줄 때
 x_val_sequence = sequence.pad_sequences(x_val, maxlen=maxlen)
 
 #one_hot encoding: 자연어 벡터 형식으로 변경
