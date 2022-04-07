@@ -16,7 +16,7 @@
 - Width, Depth, Resolution 모두 독립적이지 않음, 두가지 동시에 올릴때 정확도가 높아짐 => compound scaling
 - Baseline은 B0네트워크 = MobileNasNet(정확도와 속도를 NAS의 객체로 설정해 보상(Transfer)을 줌)
   - Moblie NasNet: 속도 기준 실제 디바이스에서의 latency 측정
-  - EfficientNet: 범용모델로 latency 대신, Flop을 설정
+  - EfficientNet: 범용모델로 latency 대신, Flop을 설정(Flop: 딥러닝 모델이 얼마나 빠르게 동작하는지에 대한 metric , 모바일 환경에서 돌아가는 가벼운 )
 - B0를 기반으로 모델 scale Up
   1. 파이를 1로 고정한 뒤, grid search를 이용해 알파, 베타, 감마 탐색(***Grid search (격자 탐색) 은 모델 하이퍼 파라미터에 넣을 수 있는 값들을 순차적으로 입력한뒤에 가장 높은 성능을 보이는 하이퍼 파라미터들을 찾는 탐색 방법)
   2. 탐섹된 알파, 베타, 감마를 고정한 상테로, 파이를 2로 증가시켜 B1획득
