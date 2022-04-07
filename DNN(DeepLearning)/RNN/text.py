@@ -19,7 +19,7 @@ x_train_onehot = to_categorical(x_train_sequence)
 x_val_onehot = to_categorical(x_val_sequence)
 
 #배치 차원& 타임스텝 차원 변경: 코드를 위해 편의상
-seq = np.swapaxes(x, 0, 1)
+seq = np.swapaxes(x, 0, 1) #축을 바꾸는 np.swapaxes (배열, 축, 축)
 
 #정방향 계산 #np.dot: 행렬의 곱
 def forpass(self, x):
