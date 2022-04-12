@@ -175,6 +175,17 @@ for epoch in range(n_epochs):
 
 ### 이미지 출력
 ```python
-form Ipython.display import Image
+from Ipython.display import Image
 Image('~.png')
 ```
+
+
+#GAN 논문
+- 새로운 framwork 제안
+- 적대적인 두개의 네트워크 모델(생성자, 판별자)로 학습
+- G: 원본 데이터의 분포 학습
+- D: 한장의 이미지가 학습 데이터인지 or G로 부터 만들어진 데이터인지 구별할 수 있도록 학습
+- G & D => minmax게임 (G는 속이려함, D는 속지 않으려함)
+- 오직 뉴럴 네트워크로 학습
+- 깊은 네트워크 학습
+- 
