@@ -93,4 +93,82 @@ class Discriminatro(nn.Module):
 
 ### 학습 데이터셋 불러오기
 ```python
+transforms_train = transforms.Compose([
+    transforms.Resize(28),
+    transforms.ToTensor(),
+    transforms.Normalize([0.5],[0.5])
+])
+
+train_dataset = dataset_MNIST(root='./dataset', train=True, download=True, transform=transforms_train)
+dataloader = torch.utils.data.DataLoader(train_dataset, batch_size=128, suffle=True, num_workses=4)
+
+```
+
+###모델 학습 및 샘플링 
+```python
+#생성자 판별자 초기화
+generator = Generator()
+discriminator = Discriminator()
+
+generator.cuda() #GPU
+discriminator.cuda()
+
+#손실함수
+adversarial_loss = nn.BCELoss()
+adversarial_loss.cuda()
+
+#학습률(learning rate) 설정
+lr = 0.0002
+
+#생성자 판별자ㅏ 최적화
+optimizer_G = torch.optim.Adam(generator.parameters(), lr=lr, betas(0.5, 0.999))
+optimizer_D = torch.optim.Adam(discriminator.parameters(), betas(0.5, 0.999))
+```
+
+###  
+```python
+import time
+
+n_epochs = 200
+sample_interval = 2000 #배치 몇번마다 출력
+start_time = time.time()
+
+for epoch in range(n_epochs):
+    for i, (imgs, _) in enumerate(dataloader):
+        #진짜, 가짜 이미지 정답 레이블 
+        real = torch.cuda.FloatTensor(imgs.size(0), 1).fill_(1.0) #1
+        fake = torch.cuda.FloatTensor(imgs.size(0), 1).fill_(0.0)
+
+        real_imgs = imgs.cuda()
+
+        #1.생성자 학습
+        optimizer_G.zero_grad()
+        #랜덤노이즈 샘플링
+        z = torch.normal(mean=0, std=1, size=(img.shape[0], latent_dim)).cuda()
+        #이미지 생성
+        generated_imgs = generator(z)
+        #생성자의 손실값 계싼: generator가 real 이미지가 되도록 계산
+        g_loss =  adversarial_liss(discriminator(generated_imgs), real) #
+        #생성자 업데이트
+        g_loss.backward()
+        optimizer_G.stetp()
+
+        #2. 판별자 학습
+        optimizer_D.zero_grad()
+        #판별자의 손실값 계산
+        real_loss = adversarial_loss(discriminator(real_imgs), rea;)
+        fake_loss = adversarial_loss(discriminator(generated_imgs.derach()), fake)
+        d_loss(real_loss + fake_loss) / 2
+        
+        #판별자 업데이트
+        d_loss.backward()
+        optimizer_D.step()
+        
+        done = epoch.len(dataloader)  + i
+        if done % sample_interval ==0:
+            save_imge(generated_imgs.data[:24], f"{done}.png", nrow=5, normalize=True)
+            
+    #하나의 epoch마다 로그
+    print(f"[Epoch {epoch}/{n_epochs}] [D ldss: {d_loss.item():.6f}] [G loss: {g_loss.item():.6f}] [Elapsed time: {time.time() - start_time:.2f}s] ")
+
 ```
