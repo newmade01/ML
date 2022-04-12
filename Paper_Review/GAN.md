@@ -31,7 +31,66 @@
 - 생성자의 분포는 원본 Distribution(확률분포)을 따라가게 된다.
 - 생성자가 원본 data와 동일할 때, Global Optimum Point를 갖게됨
 
-
+### 라이브러리 
 ```python
-print('hello')
+import torch
+import torch.nn as nn #모델정의
+from torchvision import tensorflow_datasets
+import torchvision.tranasforms as transforms #전처리
+from torchvision.utils import save_image
+```
+
+### 생성자 , 판별자 모델 정의 
+```python
+latent_dim = 100 
+
+class Generator(nn.Module):
+    def __init__(self):
+        super(Generator, self).__init__()
+
+        #하나의 블록 정의
+        def block(input_dim, output_dim, normalize=True):
+            layers = [nn.Linear(inuptut_dim, output_dim)]
+            if normalize:
+                #배치 정규화 수행(차원동일)
+                layers.append(nn.BatchNorm1d(output_dim, 0.8))
+            layers.append(nn.LeakyReLu(0.2 , inplace=True))
+            return layers
+        #생성자 모델은 연속적인 여러개 블록
+        self.model = nn.Sequential(
+            *block(latent_dim, 128, normalize=False),
+            *block(128, 256),
+            *block(256, 512),
+            *block(512, 1024),
+            nn.Linear(1024, 1*28*28),
+            nn.Tanh() #-1 ~ 1 사이의 값 가짐
+        )
+    def forward(self, z):
+        img = self.model(z) #noize벡터 = z
+        img = img.view(img.size(0), 1, 28, 28) #batch_size, 채널, 높이, 너비
+        return img
+
+#판별자 클래스 정의
+class Discriminatro(nn.Module):
+    def __init__(self):
+        super(Discriminator, self).__init()
+
+        self.model =nn.Sequential(
+            nn.Linear(1*28*28, 512),
+            nn.LeakyReLu(0.2, inplace=True)
+            nn.Linear(512, 256),
+            nn.LeakyReLu(0.2, inplace=True),
+            nn.Linear(256, 1),
+            nn.Sigmoid(),
+        )
+        #이미지에 대한 판별 결과 반환
+        def forward(self, img):
+            flattened = img.view(img.size(0), -1)   #하나의 벡터형태로 나열
+            output = self.model(flattened)  #모델을 넣음
+            
+            return output
+```
+
+### 학습 데이터셋 불러오기
+```python
 ```
