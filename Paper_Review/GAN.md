@@ -32,7 +32,6 @@
 - 생성자가 원본 data와 동일할 때, Global Optimum Point를 갖게됨
 
 
-
-'''python
-print('')
-'''
+```python
+print('hello')
+```
