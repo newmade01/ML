@@ -172,3 +172,9 @@ for epoch in range(n_epochs):
     print(f"[Epoch {epoch}/{n_epochs}] [D ldss: {d_loss.item():.6f}] [G loss: {g_loss.item():.6f}] [Elapsed time: {time.time() - start_time:.2f}s] ")
 
 ```
+
+### 이미지 출력
+```python
+form Ipython.display import Image
+Image('~.png')
+```
